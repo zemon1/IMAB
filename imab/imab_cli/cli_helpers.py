@@ -1,3 +1,6 @@
+import sys
+
+
 def get_int(message):
     while True:
         val = raw_input(message)
@@ -6,6 +9,7 @@ def get_int(message):
             return int(val)
         except ValueError:
             continue
+
 
 def get_choice(valid_choices):
 
@@ -16,3 +20,11 @@ def get_choice(valid_choices):
             return val
         else:
             print "Invalid choice.  Valid choices: {}".format(valid_choices)
+
+
+def export_to_file(filename, func_to_output, *args):
+    stdout = sys.stdout
+    sys.stdout = open(filename, 'w+')
+    func_to_output(*args)
+    sys.stdout = stdout
+

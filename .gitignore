@@ -51,6 +51,8 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+.coverage
+.cache*
 *.pyc
 .idea*
 *.egg*

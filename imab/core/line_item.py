@@ -12,10 +12,14 @@ class LineItem(object):
 
         gid += 1
 
-    def pay(self):
-        if not self.paid:
-            self.paid = True
-        return self.paid
+    def pay_item(self):
+        self.paid = True
+
+    def unpay_item(self):
+        self.paid = False
+
+    def update_value(self, value):
+        self.value = value
 
     def __str__(self):
-        return "{:<38}:{:>6}".format(self.name.title(), self.value)
+        return "{}: {}, {}".format(self.item_id, self.name.title(), self.value)
