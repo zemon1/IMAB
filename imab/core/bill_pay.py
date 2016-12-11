@@ -6,7 +6,9 @@ class BillPay(object):
         self.not_paid = {}
         self.paid = {}
 
-    def pay(self, item):
+    def pay(self, item_id):
+        item = self.not_paid[item_id]
+
         if item.pay():
             self.transfer_item(item.item_id)
             self.real_balance -= item.value()
@@ -18,13 +20,19 @@ class BillPay(object):
     def reduce_balances(self, item):
         self.theoretical_balance -= item.value
 
-        if item.get_paid():
+        if item.paid:
             self.real_balance -= item.value
 
     def add_line_item(self, item):
         self.reduce_balances(item)
 
-        if item.get_paid():
+        if item.paid:
             self.paid[item.item_id] = item
         else:
             self.not_paid[item.item_id] = item
+
+    def get_paid(self):
+        return self.paid.values()
+
+    def get_unpaid(self):
+        return self.not_paid.values()

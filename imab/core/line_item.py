@@ -18,4 +18,4 @@ class LineItem(object):
         return self.paid
 
     def __str__(self):
-        return "{}:\t{}\t{}".format(self.name.title(), self.value, self.paid)
+        return "{:<38}:{:>6}".format(self.name.title(), self.value)
